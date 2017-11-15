@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="./lib/linkinpark.css">
+    <title>Link in Park</title>
+  </head>
+  <body>
+    <!--Navigation bar-->
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg">
+        <a href="/" class="navbar-brand">
+          <img class="brand-img" src="./icons/LinkinParkEmblem.png" alt="Emblem">
+          LinkinPark
+        </a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myNavbar" aria-controls="myNavbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="oi oi-menu"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav ml-auto">
+            <li>
+              <a class="nav-link" href="#">Members</a>
+            </li>
+            <li class="dropdown">
+              <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">
+                Albums <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" href="#">Official</a></li>
+                <li><a class="nav-link" href="#">Non-Official</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
+                Tour
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" href="#">Local Tour</a></li>
+                <li><a class="nav-link" href="#">World Tour</a></li>
+              </ul>
+            </li>
+            <li>
+              <a class="nav-link" href="#">Sing In</a>
+            </li>
+            <li>
+              <a class="nav-link" href="#">Donate</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <!--Carousel imgs-->
+    <div class="carousel slide hidden-xs" id="liveSlide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#liveSlide" data-slide-to="0" class="active"></li>
+        <li data-target="#liveSlide" data-slide-to="1" class=""></li>
+        <li data-target="#liveSlide" data-slide-to="2" class=""></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="./slide/ChesterBennington.jpg" alt="First slide" class="first-slide container-fluid">
+        </div>
+        <div class="carousel-item">
+          <img src="./slide/ChesterBenningtonWithMike.jpg" alt="Second slide" class="second-slide container-fluid">
+        </div>
+        <div class="carousel-item">
+          <img src="./slide/ChesterBennington1.jpg" alt="Third slide" class="third-slide container-fluid">
+        </div>
+        <a class="carousel-control-prev" href="#liveSlide" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#liveSlide" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+
+    <!--Albums-->
+    <div class="album text-muted" id="Albums_View">
+      <div class="container">
+        <div class="absolute-box">
+          <h1 class="search-box-title" >Find by Title</h1>
+          <form class="form-inline" action="index.html" method="get">
+            <div class="col">
+              <div class="input-group">
+                <input type="text" class="form-control input-lg" placeholder="Search by title">
+                <div class="input-group-btn">
+                  <button type="button" class="btn btn-lg btn-secondary">SEARCH</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="text-center">
+          <h3>Official Albums</h3>
+        </div>
+        <div class="row">
+          <div class="card">
+            <a href="#">
+              <img src="./covers/HybridTheoryCDcover.jpg" alt="Hybrid Theory">
+            </a>
+            <div class="card-text">
+              Launching : 2000. 10. 24.<br>
+              Hybrid Theory
+            </div>
+            <div class="card-footer">
+              <a href="#"><span class="oi oi-dollar"></span></a>
+              <a href="#"><span class="oi oi-data-transfer-download"></span></a>
+            </div>
+          </div>
+          <div class="card">
+            <a href="#">
+              <img src="./covers/MeteoraCDcover.jpg" alt="Meteora">
+            </a>
+            <div class="card-text">
+              Launching : 2003. 3. 25.<br>
+              Meteora
+            </div>
+            <div class="card-footer">
+            <a href="#"><span class="oi oi-dollar"></span></a>
+              <a href="#"><span class="oi oi-data-transfer-download"></span></a>
+            </div>
+          </div>
+          <div class="card">
+            <a href="#">
+              <img class="covers" src="./covers/MinutestoMidnightCDcover.jpg" alt="Minutes to Midnight">
+            </a>
+            <div class="card-text">
+              Launching : 2007. 5. 15.<br>
+              Minutes to Midnight
+            </div>
+            <div class="card-footer">
+            <a href="#"><span class="oi oi-dollar"></span></a>
+              <a href="#"><span class="oi oi-data-transfer-download"></span></a>
+            </div>
+          </div>
+          <div class="card">
+            <a href="#">
+              <img class="covers" src="./covers/AThousandSunsCDcover.jpg" alt="A Thousand Suns">
+            </a>
+            <div class="card-text">
+              Launching : 2010. 7. 1.<br>
+            A Thousand Suns
+            </div>
+            <div class="card-footer">
+            <a href="#"><span class="oi oi-dollar"></span></a>
+              <a href="#"><span class="oi oi-data-transfer-download"></span></a>
+            </div>
+          </div>
+          <div class="card">
+            <a href="#">
+              <img class="covers" src="./covers/LivingThingsCDcover.jpg" alt="Living Things">
+            </a>
+            <div class="card-text">
+              Launching : 2012. 4. 16.<br>
+              Living Things
+            </div>
+            <div class="card-footer">
+              <a href="#"><span class="oi oi-dollar"></span></a>
+              <a href="#"><span class="oi oi-data-transfer-download"></span></a>
+            </div>
+          </div>
+          <div class="card">
+            <a href="#">
+              <img class="covers" src="./covers/TheHuntingPartyCDcover.jpg" alt="The Hunting Party">
+            </a>
+            <div class="card-text">
+              Launching : 2014. 3. 6.<br>
+              The Hunting Party
+            </div>
+            <div class="card-footer">
+              <a href="#"><span class="oi oi-dollar"></span></a>
+              <a href="#"><span class="oi oi-data-transfer-download"></span></a>
+            </div>
+          </div>
+          <div class="card">
+            <a href="#">
+              <img class="covers" src="./covers/OneMoreLightCDcover.jpg" alt="One More Light">
+            </a>
+            <div class="card-text">
+              Launching : 2017. 5. 19.<br>
+              One More Light
+            </div>
+            <div class="card-footer">
+              <a href="#"><span class="oi oi-dollar"></span></a>
+              <a href="#"><span class="oi oi-data-transfer-download"></span></a>
+            </div>
+          </div>
+          <div class="card">
+            <a class="Emblem" href="#">
+              <img src="./icons/LinkinParkEmblem.png" alt="Emblem">
+            </a>
+            <div class="more-info card-text">
+              Too see more, Click the Emblem above.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Tours-->
+    <div class="tours text-muted">
+      <div class="text-center">
+        <h3>Browse By Tours</h3>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="tour-card text-center">
+            <a href="#">
+              <img src="./tours/tour_celebrate.jpeg" alt="Celebrate tour ticket">
+            </a>
+            <div class="tour-caption">
+              Linkin Park and Friends - Celebrate Life In Honor of Chester Bennington
+            </div>
+          </div>
+          <div class="tour-card text-center">
+            <a href="#">
+              <img src="./tours/TheHuntingPartyTour.jpg" alt="The Hunting Party Tour" class="img-des">
+              <img src="./tours/TheHuntingPartyTour19-10.jpg" alt="The Hunting Party Tour" class="img-mob">
+            </a>
+            <div class="tour-caption">
+              The Hunting Party Tour
+            </div>
+          </div>
+          <div class="tour-card text-center">
+            <a href="#">
+              <img src="./tours/LivingThingsWorldTour.gif" alt="Living Things World Tour" class="img-des">
+              <img src="./tours/LivingThingsWorldTour19-10.jpg" alt="The Hunting Party Tour" class="img-mob">
+            </a>
+            <div class="tour-caption">
+              Living Things World Tour
+            </div>
+          </div>
+          <div class="tour-card text-center">
+            <a href="#">
+              <img src="./tours/ATSTour.jpg" alt="A Thousand Suns World Tour" class="img-des">
+              <img src="./tours/ATSTour19-10.jpg" alt="The Hunting Party Tour" class="img-mob">
+            </a>
+            <div class="tour-caption">
+              A Thousand Suns World Tour
+            </div>
+          </div>
+          <div class="tour-card text-center">
+            <a href="#">
+              <img src="./tours/HybridTheoryWorldTour.jpg" alt="Hybrid Theory World Tour" class="img-des">
+              <img src="./tours/HybridTheoryWorldTour19-10.jpg" alt="The Hunting Party Tour" class="img-mob">
+            </a>
+            <div class="tour-caption">
+              Hybrid Theory World Tour
+            </div>
+          </div>
+          <div class="tour-card text-center">
+            <a href="#">
+              <img src="./tours/Minutestour.jpg" alt="Minutes to Midnight Wolrd tour" class="img-des">
+              <img src="./tours/Minutestour19-10.jpg" alt="The Hunting Party Tour" class="img-mob">
+            </a>
+            <div class="tour-caption">
+              Minutes to Midnight Wolrd tour
+            </div>
+          </div>
+          <div class="tour-card text-center">
+            <a href="#">
+              <img src="./tours/OneMoreLightTour.jpg" alt="One More Light tour poster" class="img-des">
+              <img src="./tours/OneMoreLightTour19-10.jpg" alt="The Hunting Party Tour" class="img-mob">
+            </a>
+            <div class="tour-caption">
+              One More Light World Tour
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <!--footer-->
+  <footer class="footer">
+    <div class="container">
+      <p class="float-right text-muted">
+        <a href="#" class="back-to-top">Back to Top</a>
+      </p>
+      <p class="float-left text-muted">
+        <a href="https://linkinpark.com/">Go to Official Site</a>
+      </p>
+      <p class="float-left text-muted">
+        The site was built to Celebrate life in honor of Chester Bennington. No commercial purpose exists, and we promise to stop hosting the issue.
+      </p>
+    </div>
+  </footer>
+
+  <!--Core scripts-->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"><\/script>')</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.9.4/holder.min.js"></script>
+</body>
+
+</html>

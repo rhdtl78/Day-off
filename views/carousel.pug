@@ -1,0 +1,18 @@
+#liveSlide.carousel.slide(data-ride="carousel")
+  ol.carousel-indicators
+    li.active(data-target="#liveSlide" data-slide-to="0")
+    li(data-target="#liveSlide" data-slide-to="1")
+    li(data-target="#liveSlide" data-slide-to="2")
+  .carousel-inner
+    .carousel-item.active
+      img(src="/images/shish-kebab-417994_640.jpg" alt="First slide" class="first-slide container-fluid")
+    .carousel-item
+      img(src="/images/djs-2010271_640.jpg" alt="Second slide" class="second-slide container-fluid")
+    .carousel-item
+      img(src="/images/party-2173187_640.jpg" alt="Third slide" class="third-slide container-fluid")
+    a.carousel-control-prev(href="#liveSlide" role="button" data-slide="prev")
+      span.carousel-control-prev-icon(aria-hidden="true")
+      span.sr-only Previous
+    a.carousel-control-next(href="#liveSlide" role="button" data-slide="next")
+      span.carousel-control-next-icon(aria-hidden="true")
+      span.sr-only Next

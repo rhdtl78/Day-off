@@ -1,0 +1,14 @@
+.tours.text-muted
+  .text-center
+    h3 Browse By Category
+  .container
+    .row
+      -var n = 0;
+      while n < 9
+        .col-lg-4
+          .tour-card.text-muted
+            a(href="#")
+              img(src="./tours/tour_celebrate.jpeg" alt="Celebrate tour ticket")
+            .tour-caption
+              |Linkin Park and Friends - Celebrate Life In Honor of Chester Bennington
+        -n++;
