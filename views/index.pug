@@ -1,6 +1,74 @@
 extends layout
 
 block content
-  include carousel.pug
-  include albums.pug
-  include tour.pug
+  #liveSlide.carousel.slide(data-ride="carousel")
+    ol.carousel-indicators
+      li.active(data-target="#liveSlide" data-slide-to="0")
+      li(data-target="#liveSlide" data-slide-to="1")
+      li(data-target="#liveSlide" data-slide-to="2")
+    .carousel-inner
+      .carousel-item.active
+        img(src="/images/shish-kebab-417994_640.jpg" alt="First slide" class="first-slide container-fluid")
+      .carousel-item
+        img(src="/images/djs-2010271_640.jpg" alt="Second slide" class="second-slide container-fluid")
+      .carousel-item
+        img(src="/images/party-2173187_640.jpg" alt="Third slide" class="third-slide container-fluid")
+      a.carousel-control-prev(href="#liveSlide" role="button" data-slide="prev")
+        span.carousel-control-prev-icon(aria-hidden="true")
+        span.sr-only Previous
+      a.carousel-control-next(href="#liveSlide" role="button" data-slide="next")
+        span.carousel-control-next-icon(aria-hidden="true")
+        span.sr-only Next
+
+  #Albums_View.album.text-muted
+    .container
+      .absolute-box
+        h1.search-box-title|Find Your Day-off Party
+        form.form-inline(action="index.html" method="get")
+          .col
+            .input-group
+              input(type="text" class="form-control input-lg" placeholder="Search by title")
+              input(type="text" class="form-control input-lg" placeholder="Where")       
+              select
+                  option(value="All Dates") All Dates
+                  option(value="Today") Today
+                  option(value="Tommorow") Tommorow
+                  option(value="This Week") This Week
+                  option(value="This Weekend") This Weekend
+                  option(value="Next Week") Next Week
+                  option(value="Next Month") Next Month
+              .input-group-btn
+                button(type="button" class="btn btn-lg btn-secondary")|SEARCH
+      .text-center
+        h3 Day-Off Party!
+      .row
+        -var n = 0;
+        while n < 12
+          .col-lg-4
+            .card
+              a(href="#")
+                img(src="./covers/HybridTheoryCDcover.jpg" alt="Hybrid Theory")
+              .card-text
+                |Launching : 2000. 10. 24.
+                |Hybrid Theory
+              .card-footer
+                a(href="#")
+                  span.oi.oi-dollar
+                a(href="#")
+                  span.oi.oi-data-transfer-download
+            -n++
+            
+        .tours.text-muted
+          .text-center
+            h3 Browse By Category
+          .container
+            .row
+              -var n = 0;
+              while n < 9
+                .col-lg-4
+                  .tour-card.text-muted
+                    a(href="#")
+                      img(src="./tours/tour_celebrate.jpeg" alt="Celebrate tour ticket")
+                    .tour-caption
+                      |Linkin Park and Friends - Celebrate Life In Honor of Chester Bennington
+                -n++;

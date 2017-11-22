@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  .container
+    .row.justify-content-center
+      .col-lg-5.col-sm-11
+        h1.main-title Rest Password
+        form(action="/reset-password/" method="post")
+          .form-group
+            label(for='password') Password
+            input.form-control(type='password', id='password', name='password', placeholder='Password')
+          .form-group
+            label(for='password_confirmation') Password Confirmation
+            input.form-control(type='password', id='password_confirmation', name='password_confirmation', placeholder='Password Confirm')
+        button.btn.btn-primary(type='submit') Confirm
