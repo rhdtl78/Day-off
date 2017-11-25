@@ -4,38 +4,34 @@ const catchErrors = require('../lib/async-error');
 const User = require('../models/user');
 
 function validateForm(form) {
-  var name = form.name || "";
-  var email = form.email || "";
-  name = name.trim();
-  email = email.trim();
-
-  if (!name) {
-    return 'Name is required.';
+  if (!form.password && options.needPassword) {
+    return 'Password is required.';
   }
 
-  if (!email) {
-    return 'Email is required.';
+  if (form.password.length < 6) {
+    return 'Password must be at least 6 characters.';
   }
 
   return null;
 }
-
 function valiadatePassword(form) {
-  
-}
-router.get('/', (req, res, next) => {
-  res.render('reset_password');
-});
-
-router.post('/', catchErrors(async (req,res,next)=>{
-  var err = validateForm(req.body);
-  if (err) {
-    req.flash('danger', err);
-    return res.redirect('back');
+  if (!form.password && options.needPassword) {
+    return 'Password is required.';
   }
 
+  if (form.password !== form.password_confirmation) {
+    return 'Passsword do not match.';
+  }
 
-}));
+  if (form.password.length < 6) {
+    return 'Password must be at least 6 characters.';
+  }
+
+  return null;
+}
+router.get('/', (req, res, next) => {
+  res.render('user/reset_password');
+});
 
 router.post('/confirm', catchErrors(async (req, res, next) => {
   // 넘겨 받은 이름과 이메일로 유저정보를 검색
@@ -47,13 +43,25 @@ router.post('/confirm', catchErrors(async (req, res, next) => {
     return res.redirect('back');
   }
 
-  var user = await User.findOne({email: req.body.email, name: req.body.name});
+  var __pass = bcrypt.hash(req.password, 10);
+  user = await User.findOne({password : __pass});
   console.log('USER???', user);
   if (!user) {
     req.flash('danger', 'No such Account in site. Please Sign Up');
     return res.redirect('back');
   }
-  res.render('passwd_confirm');
+  res.render('user/passwd_confirm');
 }));
 
+router.post('/complete', catchErrors(async (req, res, next)=>{
+  const err = validateForm(req.body);
+  if (err) {
+    req.flash('danger', err);
+    return res.redirect('back');
+  }
+
+  user.password = await user.generateHash(req.body.password);
+  await user.update();
+  return res.redirect('user/info');
+}));
 module.exports = router;

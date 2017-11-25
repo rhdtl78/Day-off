@@ -1,6 +1,7 @@
 /* Common styles */
 body {
-  background-color: #252525; }
+  background-color: #252525;
+  margin-bottom: 60px; }
 
 .container-fluid {
   padding: 0; }
@@ -147,7 +148,7 @@ form label {
   color: white; }
 
 .footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
   height: 60px;

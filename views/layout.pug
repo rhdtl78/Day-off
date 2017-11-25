@@ -17,7 +17,10 @@ html
           span.oi.oi-menu
 
         div(class="collapse navbar-collapse" id="myNavbar")
-          ul.nav.navbar-nav.ml-auto
+          ul.nav.navbar-nav.ml-auto              
+            li 
+              if currentUser
+                a.nav-link(href="/users")=currentUser.name
             li
               a(class="nav-link" href="#") BROWSE EVENTS
             li.dropdown
@@ -41,7 +44,10 @@ html
                 li
                   a(class="nav-link" href="#") How to contact event organizer
             li
-              a(class="nav-link" href="/signin") SIGN IN
+              if currentUser
+                a.nav-link(href="/signout") SIGN OUT
+              else
+                a.nav-link(href="/signin") SIGN IN
             li
               a(class="nav-link" href="#") CREATE EVENT
       block content
