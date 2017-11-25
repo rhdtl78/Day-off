@@ -1,63 +1,58 @@
 doctype html
 html
   head
-    title Day-Off
-    meta(charset="utf-8")
-    meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1")
-    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous")
-    link(href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.css" rel="stylesheet")
-    link(rel="stylesheet" href="/stylesheets/style.css")
-  body
-    div.container-fluid
-      nav.navbar.navbar-expand-lg
-        a.navbar-brand(href="/")
-          img.brand-img(src="/icons/LinkinParkEmblem.png" alt="Emblem")
-          |Day Off
-        button(type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myNavbar" aria-controls="myNavbar" aria-expanded="false" aria-label="Toggle navigation")
-          span.oi.oi-menu
+    title DayOff
+    meta(name="viewport", content="width=device-width, initial-scale=1, shrink-to-fit=no")
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
+    script(src='https://code.jquery.com/jquery-3.2.1.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js')
+    
+    //- Notify 라이브러리 import: http://bootstrap-notify.remabledesigns.com/ 
+    script(src='/javascripts/bootstrap-notify.js')
 
-        div(class="collapse navbar-collapse" id="myNavbar")
-          ul.nav.navbar-nav.ml-auto              
-            li 
-              if currentUser
-                a.nav-link(href="/users")=currentUser.name
-            li
-              a(class="nav-link" href="#") BROWSE EVENTS
-            li.dropdown
-              a(class="dropdown-toggle nav-link" data-toggle="dropdown" href="#") ORGANIZE
-                span.charet
-              ul.dropdown-menu
-                li
-                  a(class="nav-link" href="#") Overview
-                li
-                  a(class="nav-link" href="#") Pricing
-                li
-                  a(class="nav-link" href="#") Blog
-                li
-                  a(class="nav-link" href="#") Resources
-            li.dropdown
-              a(class="nav-link dropdown-toggle" data-toggle="dropdown" href="#") HELP
-                span.caret
-              ul.dropdown-menu(id="HELP")
-                li
-                  a(class="nav-link" href="#") Where are my ticket
-                li
-                  a(class="nav-link" href="#") How to contact event organizer
-            li
-              if currentUser
-                a.nav-link(href="/signout") SIGN OUT
-              else
-                a.nav-link(href="/signin") SIGN IN
-            li
-              a(class="nav-link" href="#") CREATE EVENT
-      block content
-      footer.footer
+    //- this application
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='/javascripts/application.js')
+
+    //- socket io
+    script(src='/socket.io/socket.io.js') 
+  body
+    block top-nav
+      include ./includes/topnav
+    block hero-unit
+    if flashMessages
+      each texts, type in flashMessages
         .container
-          p.float-right.text-muted
-            a(href="#" class="back-to-top") Back To Top
-          p.float-left.text-muted
-            a(href="https://linkinpark.com/") Go to Official Site
-      script(src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous")
-      script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous")
-      script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous")
-      script(src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.9.4/holder.min.js")
+          .alert.alert-dismissible.fade.show(class=`alert-${type}`)
+            each msg in texts
+              | #{msg} 
+            button.close(type='button', data-dismiss='alert', aria-label='close')
+              span(aria-hidden='true') &times;
+    block content
+
+    block footer
+      include ./includes/footer
+
+    script.
+
+      // WebSocket을 만들고 접속
+      var socket = io();
+
+      socket.on('welcome', function() {
+        // welcome 메시지를 받으면 join을 보낸다.
+        console.log('received welcome');
+        socket.emit('join');
+      });
+
+      socket.on('answered', function(data) {
+        // answered를 받으면 링크를 notifier로 출력한다.
+        var title = $('<div></div>').text(data.question.title).html();
+        $.notify({
+          icon: 'fa fa-bell',
+          title: 'You hace a new answer.',
+          url: data.url,
+          message: title
+        });
+      });

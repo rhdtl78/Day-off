@@ -1,0 +1,42 @@
+div.container-fluid
+  nav.navbar.navbar-expand-lg
+    a.navbar-brand(href="/")
+      img.brand-img(src="/icons/LinkinParkEmblem.png" alt="Emblem")
+      |Day Off
+    button(type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myNavbar" aria-controls="myNavbar" aria-expanded="false" aria-label="Toggle navigation")
+      span.oi.oi-menu
+
+    div(class="collapse navbar-collapse" id="myNavbar")
+      ul.nav.navbar-nav.ml-auto              
+        li 
+          if currentUser
+            a.nav-link(href="/users")=currentUser.name
+        li
+          a(class="nav-link" href="/questions") BROWSE EVENTS
+        li.dropdown
+          a(class="dropdown-toggle nav-link" data-toggle="dropdown" href="#") ORGANIZE
+            span.charet
+          ul.dropdown-menu
+            li
+              a(class="nav-link" href="#") Overview
+            li
+              a(class="nav-link" href="#") Pricing
+            li
+              a(class="nav-link" href="#") Blog
+            li
+              a(class="nav-link" href="#") Resources
+        li.dropdown
+          a(class="nav-link dropdown-toggle" data-toggle="dropdown" href="#") HELP
+            span.caret
+          ul.dropdown-menu(id="HELP")
+            li
+              a(class="nav-link" href="#") Where are my ticket
+            li
+              a(class="nav-link" href="#") How to contact event organizer
+        li
+          if currentUser
+            a.nav-link(href="/signout") SIGN OUT
+          else
+            a.nav-link(href="/signin") SIGN IN
+        li
+          a(class="nav-link" href="#") CREATE EVENT

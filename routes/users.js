@@ -41,10 +41,10 @@ function validateForm(form, options) {
   return null;
 }
 
-/* GET user listing. */
+/* GET users listing. */
 router.get('/', needAuth, catchErrors(async (req, res, next) => {
-  const user = await User.find({});
-  res.render('users/index', {users: user});
+  const users = await User.find({});
+  res.render('users/index', {users: users});
 }));
 
 router.get('/new', (req, res, next) => {
@@ -53,7 +53,7 @@ router.get('/new', (req, res, next) => {
 
 router.get('/:id/edit', needAuth, catchErrors(async (req, res, next) => {
   const user = await User.findById(req.params.id);
-  res.render('users/edit', {users: user});
+  res.render('users/edit', {user: user});
 }));
 
 router.put('/:id', needAuth, catchErrors(async (req, res, next) => {
@@ -92,7 +92,7 @@ router.delete('/:id', needAuth, catchErrors(async (req, res, next) => {
 
 router.get('/:id', catchErrors(async (req, res, next) => {
   const user = await User.findById(req.params.id);
-  res.render('users/show', {users: user});
+  res.render('users/show', {user: user});
 }));
 
 router.post('/', catchErrors(async (req, res, next) => {
