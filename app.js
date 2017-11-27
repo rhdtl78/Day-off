@@ -13,7 +13,7 @@ var passport = require('passport');
 var passportSocketIo = require('passport.socketio');
 var index = require('./routes/index');
 var users = require('./routes/users');
-var questions = require('./routes/questions');
+var events = require('./routes/events');
 
 var passportConfig = require('./lib/passport-config');
 
@@ -69,7 +69,7 @@ module.exports = (app, io) => {
   }));
 
   const sessionStore = new session.MemoryStore();
-  const sessionId = 'mjoverflow.sid';
+  const sessionId = 'dayoff.sid';
   const sessionSecret = 'TODO: change this secret string for your own';
   // session을 사용할 수 있도록.
   app.use(session({
@@ -134,7 +134,7 @@ module.exports = (app, io) => {
   // Route
   app.use('/', index);
   app.use('/users', users);
-  app.use('/questions', questions(io)); // socket.io를 인자로 주기 위해 function으로 변경
+  app.use('/events', events(io)); // socket.io를 인자로 주기 위해 function으로 변경
   require('./routes/auth')(app, passport);
   app.use('/api', require('./routes/api'));
 
