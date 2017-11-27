@@ -90,7 +90,7 @@ router.delete('/:id', needAuth, catchErrors(async (req, res, next) => {
   res.redirect('/users');
 }));
 
-router.get('/:id', catchErrors(async (req, res, next) => {
+router.get('/:id', needAuth, catchErrors(async (req, res, next) => {
   const user = await User.findById(req.params.id);
   res.render('users/show', {user: user});
 }));

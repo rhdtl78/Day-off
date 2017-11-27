@@ -30,6 +30,11 @@ router.post('', catchErrors(async (req, res, next) => {
     author: req.user._id,
     content: req.body.content,
     tags: req.body.tags.map(e => e.trim()),
+    location: req.body.location,
+    startOn: req.body.startOn,
+    endOn: req.body.endOn,
+    partyName: req.body.partyName,
+    partyDescription: req.body.partyDescription
   });
   await event.save();
   res.json(event)

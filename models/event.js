@@ -10,7 +10,12 @@ var schema = new Schema({
   numLikes: {type: Number, default: 0},
   numAnswers: {type: Number, default: 0},
   numReads: {type: Number, default: 0},
-  createdAt: {type: Date, default: Date.now}
+  createdAt: {type: Date, default: Date.now},
+  location: {type: String, trim: true, },
+  startOn: {type: Date, },
+  endOn: {type: Date, },
+  partyName: {type: String, trim: true, },
+  partyDescription: {type: String, trim: true, },
 }, {
   toJSON: { virtuals: true},
   toObject: {virtuals: true}

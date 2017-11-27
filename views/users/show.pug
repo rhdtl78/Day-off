@@ -1,4 +1,5 @@
 extends ../layout
+include ../includes/_paginate
 
 block content
   .container
@@ -19,8 +20,12 @@ block content
 
     hr
     p
-      a.btn.btn-outline-secondary(href='/users/') List
-      | 
-      a.btn.btn-outline-primary(href=`/users/${user._id}/edit`) Edit
-      | 
-      a.btn.btn-outline-danger.need-confirm-btn(href=`/users/${user._id}?_method=DELETE`) Delete
+      if currentUser.admin == true
+        a.btn.btn-outline-secondary(href='/users/') List
+        | 
+        a.btn.btn-outline-primary(href=`/users/${user._id}/edit`) Edit
+        | 
+        a.btn.btn-outline-danger.need-confirm-btn(href=`/users/${user._id}?_method=DELETE`) Delete
+      else 
+        a.btn.btn-outline-secondary(href='/users/') See Events
+        

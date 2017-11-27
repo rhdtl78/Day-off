@@ -2,8 +2,23 @@
   label(for="title") Title
   input.form-control(type="text", name="title", placeholder="What's your question?", value=event.title)
 .form-group
-  label(for="event") Question
+  label(for="location") Location
+  input.form-control(type="text", name="location", placeholder="Where's the event hold?", value=event.location)
+.form-group
+  label(for="event") Description
   textarea.form-control(name="content", rows="5")= event.content
+.form-group
+  label(for="startOn") Start
+  input.form-control(type="text", name="startOn", placeholder="When the event starts?", value=event.startOn)
+.form-group
+  label(for="endOn") End
+  input.form-control(type="text", name="endOn", placeholder="When the event ends?", value=event.endOn)
+.form-group
+  label(for="partyName") The Party's Name
+  input.form-control(type="text", name="partyName", placeholder="What is the party's name?", value=event.partyName)
+.form-group
+  label(for="partyDescription") The Party's Description
+  input.form-control(type="text", name="partyDescription", placeholder="What is the party's purpose?", value=event.partyDescription)
 .form-group
   label(for="tags") Tags
   input.form-control(type="text", name="tags", placeholder="tags separated by spaces", value=event.tags ? event.tags.join(" ") : "")

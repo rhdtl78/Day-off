@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const crypto = require('crypto');
 const Schema = mongoose.Schema;
 
 var schema = new Schema({
@@ -8,7 +7,8 @@ var schema = new Schema({
   email: {type: String, required: true, index: true, unique: true, trim: true},
   password: {type: String},
   facebook: {id: String, token: String, photo: String},
-  createdAt: {type: Date, default: Date.now}
+  createdAt: {type: Date, default: Date.now},
+  admin: false
 }, {
   toJSON: { virtuals: true},
   toObject: {virtuals: true}
