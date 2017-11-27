@@ -1,0 +1,17 @@
+{
+  "name": "DayOff",
+  "description": "",
+  "main": "",
+  "authors": [
+    "JunghoonK <rhdtl78@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/rhdtl78/Day-off",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

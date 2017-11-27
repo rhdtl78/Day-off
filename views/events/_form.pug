@@ -5,20 +5,26 @@
   label(for="location") Location
   input.form-control(type="text", name="location", placeholder="Where's the event hold?", value=event.location)
 .form-group
-  label(for="event") Description
+  label(for="content") Description
   textarea.form-control(name="content", rows="5")= event.content
 .form-group
   label(for="startOn") Start
-  input.form-control(type="text", name="startOn", placeholder="When the event starts?", value=event.startOn)
+  input.form-control(type="text", name="startOn", placeholder="When the event starts?", value=event.startOn, id="fromDate")
 .form-group
   label(for="endOn") End
-  input.form-control(type="text", name="endOn", placeholder="When the event ends?", value=event.endOn)
+  input.form-control(type="text", name="endOn", placeholder="When the event ends?", value=event.endOn, id="toDate")
+script(src='https://code.jquery.com/jquery-3.2.1.min.js')
+link( href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/css/bootstrap-datetimepicker.min.css" rel="stylesheet")
+script(src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.2/moment.min.js")
+script(src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/js/bootstrap-datetimepicker.min.js")
+script
+  include ../../lib/datetime-picker.js
 .form-group
   label(for="partyName") The Party's Name
   input.form-control(type="text", name="partyName", placeholder="What is the party's name?", value=event.partyName)
 .form-group
   label(for="partyDescription") The Party's Description
-  input.form-control(type="text", name="partyDescription", placeholder="What is the party's purpose?", value=event.partyDescription)
+  textarea.form-control(name="partyDescription", rows="5")= event.partyDescription
 .form-group
   label(for="tags") Tags
   input.form-control(type="text", name="tags", placeholder="tags separated by spaces", value=event.tags ? event.tags.join(" ") : "")
