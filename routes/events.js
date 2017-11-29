@@ -2,41 +2,13 @@ const express = require('express');
 const Event = require('../models/event');
 const Answer = require('../models/answer');
 const catchErrors = require('../lib/async-error');
-
+const needAuth = require('../lib/needAuthentication.js')
+const eventsJson = require('../lib/getEventsJSON')
 
 module.exports = io => {
   const router = express.Router();
-
-  // 동일한 코드가 users.js에도 있습니다. 이것은 나중에 수정합시다.
-  function needAuth(req, res, next) {
-    if (req.isAuthenticated()) {
-      next();
-    } else {
-      req.flash('danger', 'Please signin first.');
-      res.redirect('/signin');
-    }
-  }
-
   /* GET events listing. */
-  router.get('/', catchErrors(async (req, res, next) => {
-    const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 10;
-
-    var query = {};
-    const term = req.query.term;
-    if (term) {
-      query = {$or: [
-        {title: {'$regex': term, '$options': 'i'}},
-        {content: {'$regex': term, '$options': 'i'}}
-      ]};
-    }
-    const events = await Event.paginate(query, {
-      sort: {createdAt: -1},
-      populate: 'author',
-      page: page, limit: limit
-    });
-    res.render('events/index', {events: events, term: term, query: req.query});
-  }));
+  router.get('/', catchErrors((req, res, next) => eventsJson(req,res,next,'events/index')));
 
   router.get('/new', needAuth, (req, res, next) => {
     res.render('events/new', {event: {}});

@@ -2,15 +2,8 @@ const express = require('express');
 const User = require('../models/user');
 const router = express.Router();
 const catchErrors = require('../lib/async-error');
+const needAuth = require('../lib/needAuthentication.js')
 
-function needAuth(req, res, next) {
-  if (req.isAuthenticated()) {
-    next();
-  } else {
-    req.flash('danger', 'Please signin first.');
-    res.redirect('/signin');
-  }
-}
 
 function validateForm(form, options) {
   var name = form.name || "";

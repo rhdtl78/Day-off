@@ -1,4 +1,5 @@
 extends layout
+include ./includes/_paginate
 
 block hero-unit
   .jumbotron
@@ -23,7 +24,6 @@ block hero-unit
             span.sr-only Next
       
 block content
-
   #Albums_View.album.text-muted
     .container
       .absolute-box
@@ -43,24 +43,17 @@ block content
                   option(value="Next Month") Next Month
               .input-group-btn
                 button(type="button" class="btn btn-lg btn-secondary")|SEARCH
-      .text-center
-        h3 Day-Off Party!
-      .row
-        -var n = 0;
-        while n < 12
-          .col-lg-3.col-sm-10
-            .card
-              a(href="#")
-                img(src="./covers/HybridTheoryCDcover.jpg" alt="Hybrid Theory")
-              .card-text
-                |Launching : 2000. 10. 24.
-                |Hybrid Theory
-              .card-footer
-                a(href="#")
-                  span.oi.oi-dollar
-                a(href="#")
-                  span.oi.oi-data-transfer-download
-            -n++
+      h3.text-center Day-Off Party!
+      if events.total <= 0 
+        .alert.alert-info No events available yet
+      else
+        .events
+          each event in events.docs
+            .event.col-lg-4.col-sm-10.d-lg-inline-block
+              a.title(href=`/events/${event.id}`)= event.title
+              include events/_event
+  
+        +paginate(events, '/events', query)
             
         .tours.text-muted
           .text-center

@@ -5,11 +5,12 @@
     color: #bbb;
   }
 }
-.question {
+.event {
   line-height: 160%;
   margin-bottom: 2em;
-  padding-left: 1%;
+  padding-left: 0px;
   padding-right: 1%;
+  width: 33%;
   .title {
     font-size: 1.3rem;
   }
@@ -35,7 +36,7 @@
   font-weight: bold;
   color: #0f5ca6;
 }
-.questions {
+.events {
   .content {
     max-height: 5em;
     overflow: hidden;
