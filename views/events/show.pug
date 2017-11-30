@@ -10,7 +10,6 @@ block content
       .location= event.location
       .startOn= event.startOn
       .endOn= event.endOn
-      .content= event.content
       include _event
 
       .buttons
@@ -37,6 +36,3 @@ block content
           label(for='answer') Your Answer
           textarea.form-control(name="content", rows="5")
         button.btn.btn-primary(type="submit") Post Your Answer
-
-
-  script(src='/javascripts/event_client.js')
