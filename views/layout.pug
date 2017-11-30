@@ -5,15 +5,16 @@ html
     meta(name="viewport", content="width=device-width, initial-scale=1, shrink-to-fit=no")
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css')
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
-    script(src='https://code.jquery.com/jquery-3.2.1.min.js')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.css')
+    script(src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous")
     script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js')
     script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js')
     
     //- Notify 라이브러리 import: http://bootstrap-notify.remabledesigns.com/ 
     script(src='/javascripts/bootstrap-notify.js')
     //- bootstrap-datetimepicker
-    link(rel='stylesheet', href='/stylesheets/datepicker.css')
-    script(src='/javascripts/bootstrap-datepicker.js')
+    link(rel='stylesheet', href='/stylesheets/datepicker3.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap-datetimepicker.min.css')
     //- this application
     link(rel='stylesheet', href='/stylesheets/style.css')
     script(src='/javascripts/application.js')
@@ -36,9 +37,10 @@ html
 
     block footer
       include ./includes/footer
-
+    script(src='/javascripts/bootstrap-datepicker.js')
+    script(src='/javascripts/bootstrap-datepicker.kr.js')
+    script(src="/javascripts/datetime-picker.js")
     script.
-
       // WebSocket을 만들고 접속
       var socket = io();
 
@@ -58,3 +60,4 @@ html
           message: title
         });
       });
+    

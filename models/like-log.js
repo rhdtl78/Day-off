@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 var schema = new Schema({
   author: { type: Schema.Types.ObjectId, ref: 'User' },
-  question: { type: Schema.Types.ObjectId, ref: 'Question' },
+  question: { type: Schema.Types.ObjectId, ref: 'Event' },
   createdAt: {type: Date, default: Date.now}
 }, {
   toJSON: { virtuals: true},
@@ -12,4 +12,3 @@ var schema = new Schema({
 var LikeLog = mongoose.model('LikeLog', schema);
 
 module.exports = LikeLog;
-

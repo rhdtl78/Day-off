@@ -7,12 +7,18 @@
 .form-group
   label(for="content") Description
   textarea.form-control(name="content", rows="5")= event.content
-.form-group
+.form-group.d-inline-block.col-sm-10.col-lg-5
   label(for="startOn") Start
-  input.form-control(type="text", name="startOn", placeholder="When the event starts?", value=event.startOn, id="fromDate")
-.form-group
+  .input-group.input-append.date#startDate
+    input.form-control(type='text' name="startOn")
+    span.input-group-addon
+      span.oi.oi-calendar
+.form-group.d-inline-block.col-sm-10.col-lg-5
   label(for="endOn") End
-  input.form-control(type="text", name="endOn", placeholder="When the event ends?", value=event.endOn, id="toDate")
+  .input-group.input-append.date#endDate
+    input.form-control(type='text' name="dateOn")
+    span.input-group-addon
+      span.oi.oi-calendar
 .form-group
   label(for="partyName") The Party's Name
   input.form-control(type="text", name="partyName", placeholder="What is the party's name?", value=event.partyName)
