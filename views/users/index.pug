@@ -1,5 +1,5 @@
 extends ../layout
-
+  
 block content
   .container
     h1.main-title Users
@@ -19,9 +19,11 @@ block content
             td= user.email
             td= moment(user.createdAt).format('YYYY-MM-DD HH:mm:ss')
             td
-              a.btn.btn-sm.btn-outline-secondary(href=`/users/${user._id}/edit`) 
-                | #[i.fa.fa-pencil] Edit
-              | 
-              a.btn.btn-sm.need-confirm-btn.btn-outline-danger(href=`/users/${user._id}?_method=DELETE`)
-                | #[i.fa.fa-trash] Delete
-    a.btn.btn-primary(href='/users/new') #[i.fa.fa-plus] Register a new user
+              if currentUser.admin
+                a.btn.btn-sm.btn-outline-secondary(href=`/users/${user._id}/edit`) 
+                  | #[i.fa.fa-pencil] Edit
+                | 
+                a.btn.btn-sm.need-confirm-btn.btn-outline-danger(href=`/users/${user._id}?_method=DELETE`)
+                  | #[i.fa.fa-trash] Delete
+    if currentUser.admin
+      a.btn.btn-primary(href='/users/new') #[i.fa.fa-plus] Register a new user

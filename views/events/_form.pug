@@ -1,3 +1,35 @@
+.form-group.d-inline-block.col-sm-10.col-lg-5
+  label(for="category") Category
+  select.form-control(name="category")
+    optgroup(label="취미")
+      option 게임
+      option 공작
+      option 노래
+      option 독서
+      option 기타
+    optgroup(label="운동")
+      option 자전거
+      option 등산
+      option 수영
+      option 조깅
+      option 암벽등반
+      option 기타
+.form-group.d-inline-block.col-sm-10.col-lg-2
+  label(for="isfee")
+  .form-check.form-check-inline
+    label.form-check-label
+      input.form-check-input(type="radio" name="isfee" id="FREE" value="0")
+      | 무료
+  .form-check.form-check-inline
+    label.form-check-label
+      input.form-check-input(type="radio" name="isfee" id="CHARGE" value="1")
+      | 유료
+.form-group.d-inline-block.col-sm-10.col-lg-4#FEE
+  label(for="fee") 가격
+  .input-group
+    input.form-control(type="number", name="fee" min="0.00")
+    span.input-group-addon
+      .oi.oi-dollar
 .form-group
   label(for="title") Title
   input.form-control(type="text", name="title", placeholder="What's your question?", value=event.title)
@@ -28,3 +60,14 @@
 .form-group
   label(for="tags") Tags
   input.form-control(type="text", name="tags", placeholder="tags separated by spaces", value=event.tags ? event.tags.join(" ") : "")
+    
+script.
+  $(function(){
+    $("[name=isfee]").click(function(){
+      if( $(":input:radio[name=isfee]:checked").val() == 0){
+        $('#FEE').hide();
+      }else{
+        $('#FEE').show();
+      }
+    });
+  });
