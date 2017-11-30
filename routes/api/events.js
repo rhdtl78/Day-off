@@ -1,5 +1,5 @@
 const express = require('express');
-const Question = require('../../models/event');
+const Event = require('../../models/event');
 const catchErrors = require('../../lib/async-error');
 
 const router = express.Router();
@@ -9,7 +9,7 @@ router.get('/', catchErrors(async (req, res, next) => {
   const page = parseInt(req.query.page) || 1;
   const limit = parseInt(req.query.limit) || 10;
 
-  const events = await Question.paginate({}, {
+  const events = await Event.paginate({}, {
     sort: {createdAt: -1},
     populate: 'author',
     page: page, limit: limit
@@ -19,13 +19,13 @@ router.get('/', catchErrors(async (req, res, next) => {
 
 // Read
 router.get('/:id', catchErrors(async (req, res, next) => {
-  const event = await Question.findById(req.params.id).populate('author');
+  const event = await Event.findById(req.params.id).populate('author');
   res.json(event);
 }));
 
 // Create
 router.post('', catchErrors(async (req, res, next) => {
-  var event = new Question({
+  var event = new Event({
     title: req.body.title,
     author: req.user._id,
     content: req.body.content,
@@ -42,7 +42,7 @@ router.post('', catchErrors(async (req, res, next) => {
 
 // Put
 router.put('/:id', catchErrors(async (req, res, next) => {
-  const event = await Question.findById(req.params.id);
+  const event = await Event.findById(req.params.id);
   if (!event) {
     return next({status: 404, msg: 'Not exist event'});
   }
@@ -58,14 +58,14 @@ router.put('/:id', catchErrors(async (req, res, next) => {
 
 // Delete
 router.delete('/:id', catchErrors(async (req, res, next) => {
-  const event = await Question.findById(req.params.id);
+  const event = await Event.findById(req.params.id);
   if (!event) {
     return next({status: 404, msg: 'Not exist event'});
   }
   if (event.author && event.author._id != req.user._id) {
     return next({status: 403, msg: 'Cannot update'});
   }
-  await Question.findOneAndRemove({_id: req.params.id});
+  await Event.findOneAndRemove({_id: req.params.id});
   res.json({msg: 'deleted'});
 }));
 

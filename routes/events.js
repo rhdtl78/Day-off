@@ -23,7 +23,7 @@ module.exports = io => {
     const event = await Event.findById(req.params.id).populate('author');
     const answers = await Answer.find({event: event.id}).populate('author');
     event.numReads++;    // TODO: 동일한 사람이 본 경우에 Read가 증가하지 않도록???
-
+    console.log(event);
     await event.save();
     res.render('events/show', {event: event, answers: answers});
   }));
@@ -56,6 +56,11 @@ module.exports = io => {
       title: req.body.title,
       author: user._id,
       content: req.body.content,
+      location: req.body.location,
+      startOn: req.body.startOn,
+      endOn: req.body.endOn,
+      partyName: req.body.partyName,
+      partyDescription: req.body.partyDescription,
       tags: req.body.tags.split(" ").map(e => e.trim()),
     });
     await event.save();

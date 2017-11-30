@@ -5,6 +5,11 @@ block content
     h1.main-title= event.title
 
     .event.show
+      .partyname= event.partyName
+      .partydescription= event.partyDescription
+      .location= event.location
+      .startOn= event.startOn
+      .endOn= event.endOn
       .content= event.content
       include _event
 
