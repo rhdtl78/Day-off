@@ -324,15 +324,15 @@ form label {
   .event .title {
     font-size: 1.3rem; }
   .event .content {
-    color: #666; }
+    color: white; }
   .event .tags {
     margin: 0.5em 0; }
-  .event .partyname {
+  .event .partyname, .event .partydescription, .event .category, .event .fee, .event .location, .event .startOn, .event .endOn {
     font-size: 0.8em;
-    text-align: right; }
-  .event .partydescription {
-    font-size: 0.8em;
-    text-align: right; }
+    color: #666; }
+
+.info {
+  border-bottom: solid #eee 1px; }
 
 .author {
   text-align: right;

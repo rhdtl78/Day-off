@@ -7,7 +7,7 @@ var schema = new Schema({
   title: {type: String, trim: true, required: true},
   content: {type: String, trim: true, required: true},
   tags: [String],
-  numLikes: {type: Number, default: 0},
+  numParticipant: {type: Number, default: 0},
   numAnswers: {type: Number, default: 0},
   numReads: {type: Number, default: 0},
   createdAt: {type: Date, default: Date.now},
@@ -16,6 +16,8 @@ var schema = new Schema({
   endOn: {type: Date, required: true},
   partyName: {type: String, trim: true, required: true},
   partyDescription: {type: String, trim: true, required: true},
+  fee: {type: Number, deafault: 0},
+  category: {type: String, default: "기타"},
 }, {
   toJSON: { virtuals: true},
   toObject: {virtuals: true}

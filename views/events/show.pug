@@ -5,18 +5,42 @@ block content
     h1.main-title= event.title
 
     .event.show
-      .partyname= event.partyName
-      .partydescription= event.partyDescription
-      .location= event.location
-      .startOn= event.startOn
-      .endOn= event.endOn
+      .info
+        .d-inline-block.col-sm-10.col-lg-4
+          .category
+            span
+              | 분류 : #{event.category}
+          .fee
+            span 
+            if event.fee == 0
+              | 참가비 : 무료
+            else
+              | 참가비 : #{event.fee}$
+        .d-inline-block.col-sm-10.col-lg-4      
+          .partyname 
+            span
+              | 단체명 : #{event.partyName}
+          .partydescription
+            span
+              | 단체 설명 : #{event.partyDescription}
+        .d-inline-block.col-sm-10.col-lg-4      
+          .startOn
+            span
+              | 시작일 : #{moment(event.startOn).format('YYYY-MM-DD')}
+          .endOn
+            span
+              | 종료일 : #{moment(event.endOn).format('YYYY-MM-DD')}
+        .d-inline-block.col-sm-10.col-lg-4      
+          .location
+            span
+              | 위치 : #{event.location}
       include _event
 
       .buttons
         if currentUser
-          button.btn.btn-primary.event-like-btn(data-id=event.id) 
+          button.btn.btn-primary.event-participate-btn(data-id=event.id) 
             span.for-loading #[i.fa.fa-spin.fa-refresh] Loading
-            span #[i.fa.fa-thumbs-up] Like
+            span #[i.fa.fa-thumbs-up] Participate
           if event.author && event.author.id == currentUser.id
             | 
             a.btn.btn-outline-secondary(href=`/events/${event.id}/edit`) Edit
@@ -36,3 +60,5 @@ block content
           label(for='answer') Your Answer
           textarea.form-control(name="content", rows="5")
         button.btn.btn-primary(type="submit") Post Your Answer
+
+  script(src='/javascripts/event_client.js')

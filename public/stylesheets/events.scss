@@ -14,19 +14,19 @@
     font-size: 1.3rem;
   }
   .content {
-    color: #666;
+    color: white;
   }
   .tags {
     margin: 0.5em 0;
   }
-  .partyname{
+  .partyname,.partydescription,.category,.fee,.location,.startOn,.endOn{
     font-size: 0.8em;
-    text-align: right;
+    color: #666;
   }
-  .partydescription{
-    font-size: 0.8em;
-    text-align: right;
-  }
+}
+
+.info{
+  border-bottom: solid #eee 1px;
 }
 
 .author {
