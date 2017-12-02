@@ -7,6 +7,7 @@ html
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
     link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.css')
     script(src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous")
+    script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.3/moment.min.js")
     script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js')
     script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js')
     //- Latest compiled and minified CSS
@@ -17,8 +18,9 @@ html
     //- Notify 라이브러리 import: http://bootstrap-notify.remabledesigns.com/ 
     script(src='/javascripts/bootstrap-notify.js')
     //- bootstrap-datetimepicker
-    link(rel='stylesheet', href='/stylesheets/datepicker3.css')
-    link(rel='stylesheet', href='/stylesheets/bootstrap-datetimepicker.min.css')
+    script(type="text/javascript" src="/javascripts/bootstrap-material-datetimepicker.js")
+    link(rel="stylesheet" href="/stylesheets/bootstrap-material-datetimepicker.css")
+    script(src="/javascripts/datetime-picker.js")
     //- this application
     link(rel='stylesheet', href='/stylesheets/style.css')
     script(src='/javascripts/application.js')
@@ -41,9 +43,7 @@ html
 
     block footer
       include ./includes/footer
-    script(src='/javascripts/bootstrap-datepicker.js')
-    script(src='/javascripts/bootstrap-datepicker.kr.js')
-    script(src="/javascripts/datetime-picker.js")
+
     script.
       // WebSocket을 만들고 접속
       var socket = io();

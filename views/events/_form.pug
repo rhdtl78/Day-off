@@ -36,16 +36,16 @@
   textarea.form-control(name="content", rows="5")= event.content
 .form-group.d-inline-block.col-sm-10.col-lg-5
   label(for="startOn") Start
-  .input-group.input-append.date#startDate
-    input.form-control(type='text' name="startOn")
+  .input-group.input-append.date
+    input.form-control#startDate(type='text' name="startOn")
     span.input-group-addon
-      span.oi.oi-calendar
+      i.oi.oi-calendar
 .form-group.d-inline-block.col-sm-10.col-lg-5
   label(for="endOn") End
-  .input-group.input-append.date#endDate
-    input.form-control(type='text' name="endOn")
+  .input-group.input-append.date
+    input.form-control#endDate(type='text' name="endOn")
     span.input-group-addon
-      span.oi.oi-calendar
+      i.oi.oi-calendar
 .form-group
   label(for="partyName") The Party's Name
   input.form-control(type="text", name="partyName", placeholder="What is the party's name?", value=event.partyName)

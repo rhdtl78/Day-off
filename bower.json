@@ -13,5 +13,8 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "eonasdan-bootstrap-datetimepicker": "tempusdominus-core#^5.0.0-alpha8"
+  }
 }

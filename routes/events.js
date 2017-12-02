@@ -36,6 +36,13 @@ module.exports = io => {
     }
     event.title = req.body.title;
     event.content = req.body.content;
+    event.location = req.body.location;
+    event.startOn = req.body.startOn;
+    event.endOn = req.body.endOn;
+    event.partyName = req.body.partyName;
+    event.partyDescription = req.partyDescription;
+    event.fee = req.body.fee;
+    event.category = req.body.category;
     event.tags = req.body.tags.split(" ").map(e => e.trim());
 
     await event.save();
