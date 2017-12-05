@@ -27,18 +27,24 @@ module.exports = io => {
     res.render('events/show', {event: event, answers: answers});
   }));
 
-  router.put('/:id', catchErrors(async (req, res, next) => {
+  router.post('/:id', catchErrors(async (req, res, next) => {
     const event = await Event.findById(req.params.id);
 
     if (!event) {
       req.flash('danger', 'Not exist event');
       return res.redirect('back');
     }
+    var s_arr = req.body.startOn.split('-');
+    var e_arr = req.body.endOn.split('-');
+    console.log(s_arr, e_arr);
     event.title = req.body.title;
     event.content = req.body.content;
     event.location = req.body.location;
-    event.startOn = req.body.startOn;
-    event.endOn = req.body.endOn;
+    event.startOn = new Date(parseInt(s_arr[0]), parseInt(s_arr[1])-1,parseInt(s_arr[2]));
+    event.endOn = new Date(parseInt(e_arr[0]),parseInt(e_arr[1])-1,parseInt(e_arr[2]));
+    console.log(parseInt(s_arr[0]), parseInt(s_arr[1]),parseInt(s_arr[2]));
+    console.log(parseInt(e_arr[0]),parseInt(e_arr[1]),parseInt(e_arr[2]));
+    console.log(event.startOn, event.endOn);
     event.partyName = req.body.partyName;
     event.partyDescription = req.partyDescription;
     event.fee = req.body.fee;

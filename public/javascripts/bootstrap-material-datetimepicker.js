@@ -18,12 +18,12 @@
 
     this.params = {
       date: true,
-      time: true,
+      time: false,
       format: 'YYYY-MM-DD',
       minDate: null,
       maxDate: null,
       currentDate: null,
-      lang: 'en',
+      lang: 'kor',
       weekStart: 0,
       disabledDays: [],
       shortTime: false,
@@ -33,7 +33,7 @@
       okText: 'OK',
       clearText: 'Clear',
       nowText: 'Now',
-      switchOnClick: false,
+      switchOnClick: true,
       triggerEvent: 'focus',
       monthPicker: false,
       year: true
