@@ -1,0 +1,24 @@
+extends ../layout
+  
+block content
+  .container
+    h1.main-title Participants
+    
+    table.table.table-hover
+      thead
+        tr
+          th Name
+          th Email
+          th Created At
+          th
+      tbody
+        each log in logs
+          tr
+            td
+              a(href=`/users/${log.author._id}`)= log.author.name
+            td= log.author.email
+            td= moment(log.author.createdAt).format('YYYY-MM-DD HH:mm:ss')
+            td
+              if currentUser.id == post.author.id
+                a.btn.btn-sm.need-confirm-btn.btn-outline-danger(href=`/events/${post._id}?_method=DELETE`)
+                  | #[i.fa.fa-trash] Delete

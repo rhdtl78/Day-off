@@ -49,9 +49,20 @@ block content
       else
         .events
           each event in events.docs
-            .event.col-lg-4.col-sm-10.d-lg-inline-block
-              a.title(href=`/events/${event.id}`)= event.title
-              include events/_event
+            .card.event.col-lg-4.col-sm-10.d-lg-inline-block
+              a(href=`/events/${event.id}`)
+                img(src="./covers/HybridTheoryCDcover.jpg" alt="Hybrid Theory")
+              .card-text
+                a.title(href=`/events/${event.id}`)= event.title
+                include events/_event
+
+              .card-footer
+                a(href="#")
+                  span.oi.oi-dollar
+                a(href="#")
+                  span.oi.oi-data-transfer-download
+            
+              
   
         +paginate(events, '/events', query)
             

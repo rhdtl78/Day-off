@@ -14,7 +14,7 @@ var passportSocketIo = require('passport.socketio');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var events = require('./routes/events');
-
+var participants = require('./routes/participants');
 var passportConfig = require('./lib/passport-config');
 
 module.exports = (app, io) => {
@@ -137,7 +137,6 @@ module.exports = (app, io) => {
   app.use('/events', events(io)); // socket.io를 인자로 주기 위해 function으로 변경
   require('./routes/auth')(app, passport);
   app.use('/api', require('./routes/api'));
-
   // catch 404 and forward to error handler
   app.use(function(req, res, next) {
     var err = new Error('Not Found');

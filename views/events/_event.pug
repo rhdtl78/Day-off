@@ -8,7 +8,7 @@
   .col-sm
     .numbers
       div
-        a(href="").
+        a(href=`/events/${event.id}/participants`).
           #[span.number.num-participate= event.numParticipant] Participants,
       div.
         #[span.number.num-answers= event.numAnswers] answers,

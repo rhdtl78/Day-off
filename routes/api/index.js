@@ -16,20 +16,23 @@ router.use(catchErrors(async (req, res, next) => {
 
 router.use('/events', require('./events'));
 
-// Like for Event
+// Participate for Event
 router.post('/events/:id/participate', catchErrors(async (req, res, next) => {
+  console.log('particepate in')
   const event = await Event.findById(req.params.id);
+  console.log('get event', event);
   if (!event) {
+    console.log('event not exist');
     return next({status: 404, msg: 'Not exist event'});
   }
-  var likeLog = await ParticipateLog.findOne({author: req.user._id, event: event._id});
-  if (!likeLog) {
-    event.numParticipant++;
-    await Promise.all([
-      event.save(),
-      ParticipateLog.create({author: req.user._id, event: event._id})
-    ]);
-  }
+  event.numParticipant++;
+  console.log('increase numParticipant');
+  var log = new ParticipateLog({author: req.user, event: event});
+  await Promise.all([
+    event.participateLog.push(log),
+    console.log('push log to event', log),
+    event.save()
+  ]);
   return res.json(event);
 }));
 

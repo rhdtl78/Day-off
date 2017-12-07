@@ -8,6 +8,7 @@ var schema = new Schema({
   content: {type: String, trim: true, required: true},
   tags: [String],
   numParticipant: {type: Number, default: 0},
+  participateLog: {type: [{}], ref:'ParticipateLog'},
   numAnswers: {type: Number, default: 0},
   numReads: {type: Number, default: 0},
   createdAt: {type: Date, default: Date.now},
