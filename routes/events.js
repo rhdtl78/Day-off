@@ -57,7 +57,7 @@ module.exports = io => {
     event.startOn = new Date(parseInt(s_arr[0]), parseInt(s_arr[1])-1,parseInt(s_arr[2]));
     event.endOn = new Date(parseInt(e_arr[0]),parseInt(e_arr[1])-1,parseInt(e_arr[2]));
     event.partyName = req.body.partyName;
-    event.partyDescription = req.partyDescription;
+    event.partyDescription = req.body.partyDescription;
     event.fee = req.body.fee;
     event.category = req.body.category;
     event.tags = req.body.tags.split(" ").map(e => e.trim());
