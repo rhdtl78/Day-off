@@ -29,16 +29,12 @@ router.post('/events/:id/participate', catchErrors(async (req, res, next) => {
     });
   }
   var log = await ParticipateLog.findOne({author: req.user._id, event: event._id});
-  console.log(log);
   var new_log;
   if (!log) {
-    console.log('no log')
     await ParticipateLog.create({author: req.user._id, event: event._id});
     new_log = await ParticipateLog.findOne({author: req.user._id, event: event._id});
-    console.log(new_log),
     event.participateLog.push(new_log._id);
     event.numParticipant = event.participateLog.length,
-    console.log(event.numParticipant),
     await Promise.all([event.save()]);
   }
   return res.json(event);
