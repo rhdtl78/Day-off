@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 var schema = new Schema({
-  author: { type: {}, ref: 'User' },
-  event: { type: {}, ref: 'Event' },
+  author: {type: Schema.Types.ObjectId, ref: 'User', default : null},
+  event: { type: Schema.Types.ObjectId, ref: 'Event' , default: null},
   createdAt: {type: Date, default: Date.now}
 }, {
   toJSON: { virtuals: true},

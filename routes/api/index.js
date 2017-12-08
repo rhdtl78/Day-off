@@ -10,7 +10,10 @@ router.use(catchErrors(async (req, res, next) => {
   if (req.isAuthenticated()) {
     next();
   } else {
-    next({status: 401, msg: 'Unauthorized'});
+    next({
+      status: 401,
+      msg: 'Unauthorized'
+    });
   }
 }));
 
@@ -18,21 +21,26 @@ router.use('/events', require('./events'));
 
 // Participate for Event
 router.post('/events/:id/participate', catchErrors(async (req, res, next) => {
-  console.log('particepate in')
   const event = await Event.findById(req.params.id);
-  console.log('get event', event);
   if (!event) {
-    console.log('event not exist');
-    return next({status: 404, msg: 'Not exist event'});
+    return next({
+      status: 404,
+      msg: 'Not exist question'
+    });
   }
-  event.numParticipant++;
-  console.log('increase numParticipant');
-  var log = new ParticipateLog({author: req.user, event: event});
-  await Promise.all([
-    event.participateLog.push(log),
-    console.log('push log to event', log),
-    event.save()
-  ]);
+  var log = await ParticipateLog.findOne({author: req.user._id, event: event._id});
+  console.log(log);
+  var new_log;
+  if (!log) {
+    console.log('no log')
+    await ParticipateLog.create({author: req.user._id, event: event._id});
+    new_log = await ParticipateLog.findOne({author: req.user._id, event: event._id});
+    console.log(new_log),
+    event.participateLog.push(new_log._id);
+    event.numParticipant = event.participateLog.length,
+    console.log(event.numParticipant),
+    await Promise.all([event.save()]);
+  }
   return res.json(event);
 }));
 

@@ -7,9 +7,15 @@
 .row
   .col-sm
     .numbers
-      div
-        a(href=`/events/${event.id}/participants`).
+      
+      if currentUser && currentUser.id == event.author
+        div
+          a(href=`/events/${event.id}/participants`).
+            #[span.number.num-participate= event.numParticipant] Participants,
+      else
+        div.
           #[span.number.num-participate= event.numParticipant] Participants,
+          
       div.
         #[span.number.num-answers= event.numAnswers] answers,
       div.

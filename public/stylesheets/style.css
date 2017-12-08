@@ -187,6 +187,8 @@ h3 {
   display: table-cell;
   vertical-align: middle;
   transition: .5s;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   overflow: hidden; }
 
 .tour-card:hover > .tour-caption {

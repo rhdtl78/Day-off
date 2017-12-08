@@ -1,6 +1,7 @@
 const express = require('express');
 const Event = require('../models/event');
 const Answer = require('../models/answer');
+const User = require('../models/user');
 const catchErrors = require('../lib/async-error');
 const needAuth = require('../lib/needAuthentication.js');
 const eventsJson = require('../lib/getEventsJSON');
@@ -29,8 +30,29 @@ module.exports = io => {
 
   router.get('/:id/participants', catchErrors(async (req,res,next)=>{
     const event = await Event.findById(req.params.id).populate('author');
-    var participateLog = event.participateLog;
-    res.render('events/participants',{logs:participateLog, post:event});
+    console.log(event);
+    var logs = event.participateLog;
+    var length = event.numParticipant;
+    var party = [];
+    var i = 0;
+    for(i = 0 ; i < length; i++){
+      var log = await ParticipateLog.findById(logs[i]);
+      var p = await User.findById(log.author);
+      party[i] = {name:p.name,email:p.email,participatedAt:log.createdAt};
+      console.log(party);
+    }
+    console.log(party);
+    // await Promise.all([
+    //   party = logs.map(async (log_id, index, arr)=>{
+    //     var log = await ParticipateLog.findById(log_id);
+    //     var p = await User.findById(log.author);
+    //     console.log(arr);
+    //     party[index] = {name:p.name,email:p.email};
+    //     console.log(party);
+    //   })
+    // ]).then(console.log(party));
+    // console.log(party);
+    res.render('events/participants',{participants:party, post:event});
   }));
 
   router.post('/:id', catchErrors(async (req, res, next) => {
