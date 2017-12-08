@@ -35,7 +35,7 @@ router.post('/events/:id/participate', catchErrors(async (req, res, next) => {
     new_log = await ParticipateLog.findOne({author: req.user._id, event: event._id});
     event.participateLog.push(new_log._id);
     event.numParticipant = event.participateLog.length,
-    await Promise.all([event.save()]);
+    await event.save();
   }
   return res.json(event);
 }));

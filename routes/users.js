@@ -108,6 +108,7 @@ router.post('/', catchErrors(async (req, res, next) => {
   user = new User({
     name: req.body.name,
     email: req.body.email,
+    admin: false
   });
   user.password = await user.generateHash(req.body.password);
   await user.save();

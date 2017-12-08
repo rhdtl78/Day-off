@@ -30,7 +30,6 @@ module.exports = io => {
 
   router.get('/:id/participants', catchErrors(async (req,res,next)=>{
     const event = await Event.findById(req.params.id).populate('author');
-    console.log(event);
     var logs = event.participateLog;
     var length = event.numParticipant;
     var party = [];
@@ -39,19 +38,7 @@ module.exports = io => {
       var log = await ParticipateLog.findById(logs[i]);
       var p = await User.findById(log.author);
       party[i] = {name:p.name,email:p.email,participatedAt:log.createdAt};
-      console.log(party);
     }
-    console.log(party);
-    // await Promise.all([
-    //   party = logs.map(async (log_id, index, arr)=>{
-    //     var log = await ParticipateLog.findById(log_id);
-    //     var p = await User.findById(log.author);
-    //     console.log(arr);
-    //     party[index] = {name:p.name,email:p.email};
-    //     console.log(party);
-    //   })
-    // ]).then(console.log(party));
-    // console.log(party);
     res.render('events/participants',{participants:party, post:event});
   }));
 

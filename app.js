@@ -14,7 +14,6 @@ var passportSocketIo = require('passport.socketio');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var events = require('./routes/events');
-var participants = require('./routes/participants');
 var passportConfig = require('./lib/passport-config');
 
 module.exports = (app, io) => {
