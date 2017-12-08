@@ -20,29 +20,57 @@ module.exports = io => {
     res.render('events/edit', {event: event});
   }));
 
-  router.get('/:id', catchErrors(async (req, res, next) => {
+  router.get('/:id',needAuth, catchErrors(async (req, res, next) => {
     const event = await Event.findById(req.params.id).populate('author');
     const answers = await Answer.find({event: event.id}).populate('author');
     event.numReads++;    // TODO: 동일한 사람이 본 경우에 Read가 증가하지 않도록???
-    await event.save();
-    res.render('events/show', {event: event, answers: answers});
-  }));
-
-  router.get('/:id/participants', catchErrors(async (req,res,next)=>{
-    const event = await Event.findById(req.params.id).populate('author');
     var logs = event.participateLog;
     var length = event.numParticipant;
-    var party = [];
+    var participants = [];
     var i = 0;
     for(i = 0 ; i < length; i++){
       var log = await ParticipateLog.findById(logs[i]);
-      var p = await User.findById(log.author);
-      party[i] = {name:p.name,email:p.email,participatedAt:log.createdAt};
+      if(log){
+        console.log(log);
+        var p = await User.findById(log.author);
+        if(p){
+          console.log(p);
+          participants[i] = {name:p.name,email:p.email,participatedAt:log.createdAt};
+        }
+      }
     }
-    res.render('events/participants',{participants:party, post:event});
+    var isParticipated = false;
+    var u = participants.filter(function (p) {
+      req.user._id == p._id
+    });
+    if(u){
+      isParticipated = true;
+    }
+    await event.save();
+    res.render('events/show', {event: event, answers: answers, isParticipated: isParticipated});
   }));
 
-  router.post('/:id', catchErrors(async (req, res, next) => {
+  router.get('/:id/participants',needAuth, catchErrors(async (req,res,next)=>{
+    const event = await Event.findById(req.params.id).populate('author');
+    var logs = event.participateLog;
+    var length = event.numParticipant;
+    var participants = [];
+    var i = 0;
+    for(i = 0 ; i < length; i++){
+      var log = await ParticipateLog.findById(logs[i]);
+      if(log){
+        console.log(log);
+        var p = await User.findById(log.author);
+        if(p){
+          console.log(p);
+          participants[i] = {name:p.name,email:p.email,participatedAt:log.createdAt};
+        }
+      }
+    }
+    res.render('events/participants',{participants:participants, post:event});
+  }));
+
+  router.post('/:id',needAuth, catchErrors(async (req, res, next) => {
     const event = await Event.findById(req.params.id);
 
     if (!event) {

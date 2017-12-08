@@ -1,6 +1,6 @@
 .form-group.d-inline-block.col-sm-10.col-lg-5
   label(for="category") Category
-  select.form-control(name="category")
+  select.form-control(name="category" required)
     optgroup(label="취미")
       option 게임
       option 공작
@@ -18,7 +18,7 @@
   label(for="isfee")
   .form-check.form-check-inline
     label.form-check-label
-      input.form-check-input(type="radio" name="isfee" id="FREE" value="0")
+      input.form-check-input(type="radio" name="isfee" id="FREE" value="0" checked)
       | 무료
   .form-check.form-check-inline
     label.form-check-label
@@ -27,28 +27,28 @@
 .form-group.d-inline-block.col-sm-10.col-lg-4#FEE
 .form-group
   label(for="title") Title
-  input.form-control(type="text", name="title", placeholder="What's your question?", value=event.title)
+  input.form-control(type="text", name="title", placeholder="What's your Event?", value=event.title required)
 .form-group
   label(for="location") Location
-  input.form-control(type="text", name="location", placeholder="Where's the event hold?", value=event.location)
+  input.form-control(type="text", name="location", placeholder="Where's the event hold?", value=event.location required)
 .form-group
   label(for="content") Description
   textarea.form-control(name="content", rows="5")= event.content
 .form-group.d-inline-block.col-sm-10.col-lg-5
   label(for="startOn") Start
   .input-group.input-append.date
-    input.form-control#startDate(type='text' name="startOn")
+    input.form-control#startDate(type='text' name="startOn" required)
     span.input-group-addon
       i.oi.oi-calendar
 .form-group.d-inline-block.col-sm-10.col-lg-5
   label(for="endOn") End
   .input-group.input-append.date
-    input.form-control#endDate(type='text' name="endOn")
+    input.form-control#endDate(type='text' name="endOn" required)
     span.input-group-addon
       i.oi.oi-calendar
 .form-group
   label(for="partyName") The Party's Name
-  input.form-control(type="text", name="partyName", placeholder="What is the party's name?", value=event.partyName)
+  input.form-control(type="text", name="partyName", placeholder="What is the party's name?", value=event.partyName required)
 .form-group
   label(for="partyDescription") The Party's Description
   textarea.form-control(name="partyDescription", rows="5")= event.partyDescription
@@ -62,7 +62,7 @@ script.
       if($('#CHARGE').is(":checked")){
         $('#FEE').append("<div class='input-group'>");
         $('#FEE .input-group').append("<label for='fee'>가격");
-        $('#FEE .input-group').append("<input class='form-control' type='number' name='fee' min='0.00'/>");
+        $('#FEE .input-group').append("<input class='form-control' type='number' name='fee' min='0.00' required/>");
         $('#FEE .input-group').append("<span class='input-group-addon'><span class='oi oi-dollar'>");
         $('#FEE .input-group').append("</span></span></div>");
       }else if($('#FREE').is(":checked")){
