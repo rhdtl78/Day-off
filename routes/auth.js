@@ -13,7 +13,7 @@ module.exports = (app, passport) => {
     passport.authenticate('facebook', { scope : 'email' })
   );
 
-  app.get('/auth/facebook/callback',
+  app.post('/auth/facebook/callback',
     passport.authenticate('facebook', {
       failureRedirect : '/signin',
       failureFlash : true // allow flash messages
