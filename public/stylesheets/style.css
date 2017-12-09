@@ -56,9 +56,6 @@ a:hover {
     color: #bababa;
     position: absolute; }
 
-.col-md-5 {
-  width: 49%; }
-
 .navbar {
   background-color: #f5f5f5;
   padding: 0; }
@@ -115,6 +112,8 @@ h3 {
   display: block;
   width: 100%;
   background-color: #030202; }
+  .card .col-md-5 {
+    width: 49%; }
   .card a {
     display: block;
     height: auto;
@@ -306,33 +305,37 @@ form label {
 .show .buttons {
   margin: 1em 0; }
 
-.show .answer {
+.show .comment {
+  border: 0;
+  border-top: solid white 1px;
+  border-bottom: solid white 1px;
   position: relative;
   margin-bottom: 1em; }
-  .show .answer .like-badge {
+  .show .comment .like-badge {
     text-align: center;
     padding: 0.5em;
     position: absolute; }
-    .show .answer .like-badge .button {
+    .show .comment .like-badge .button {
       font-size: 0.8em; }
-  .show .answer .card-body {
-    padding-left: 4em; }
-  .show .answer .content {
+  .show .comment .card-body {
+    padding-left: 4em;
+    background-color: #252525; }
+  .show .comment .content {
     margin-bottom: 0.5em;
     color: #888; }
 
-.event-participate-btn, .answer-like-btn {
+.event-participate-btn, .comment-like-btn {
   cursor: pointer; }
-  .event-participate-btn .for-loading, .answer-like-btn .for-loading {
+  .event-participate-btn .for-loading, .comment-like-btn .for-loading {
     display: none; }
-  .event-participate-btn.loading, .answer-like-btn.loading {
+  .event-participate-btn.loading, .comment-like-btn.loading {
     filter: opacity(30%);
     cursor: wait; }
-    .event-participate-btn.loading > span, .answer-like-btn.loading > span {
+    .event-participate-btn.loading > span, .comment-like-btn.loading > span {
       display: none; }
-    .event-participate-btn.loading .for-loading, .answer-like-btn.loading .for-loading {
+    .event-participate-btn.loading .for-loading, .comment-like-btn.loading .for-loading {
       display: inline-block; }
-  .event-participate-btn.disabled, .answer-like-btn.disabled {
+  .event-participate-btn.disabled, .comment-like-btn.disabled {
     color: #bbb;
     cursor: default; }
 
