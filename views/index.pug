@@ -58,7 +58,7 @@ block content
 
               .card-footer.p-0
                 .icon.p-2.d-inline-block.m-0
-                  a(href=`/events/${event.id}/participate`)
+                  button.event-participate-btn(data-id=event.id style="background-color:rgba(0,0,0,0.0); border: transparent")
                     i.fa.fa-heart
                 .icon.p-2.d-inline-block.m-0
                   a(href="#")
@@ -82,3 +82,5 @@ block content
                     .tour-caption.py-auto
                       |Linkin Park and Friends - Celebrate Life In Honor of Chester Bennington
                 -n++;
+                
+  script(src='/javascripts/event_client.js')
