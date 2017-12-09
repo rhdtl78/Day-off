@@ -9,10 +9,8 @@
         | Like
 
   .card-body
-    .content= comment.content
-  .row.card-body
-    .col-sm
-    .col-sm.text-right
+    .content.d-inline-block= comment.content
+    .col-sm.text-right.d-inline-block
       .author
         | commented on #{moment(comment.createdAt).format('YYYY-MM-DD')}
         if comment.author
