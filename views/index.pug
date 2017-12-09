@@ -2,7 +2,7 @@ extends layout
 include ./includes/_paginate
 
 block hero-unit
-  .jumbotron
+  .jumbotron.d-none.d-lg-block
     .container-fluid
       #liveSlide.carousel.slide(data-ride="carousel")
         ol.carousel-indicators
@@ -25,9 +25,9 @@ block hero-unit
       
 block content
   #Albums_View.album.text-muted
-    .container
-      .absolute-box
-        h1.search-box-title|Find Your Day-off Party
+    .container-fluid
+      .absolute-box.py-0.py-lg-5.px-0.px-lg-5.my-5.mb-lg-5
+        h1.search-box-title.d-none.d-lg-block|Find Your Day-off Party
         form.form-inline(action="index.html" method="get")
           .col
             .input-group
@@ -47,12 +47,12 @@ block content
       if events.total <= 0 
         .alert.alert-info No events available yet
       else
-        .events
+        .events.justify-content-center
           each event in events.docs
-            .card.event.col-lg-4.col-sm-10.d-lg-inline-block
+            .card.event.col-sm-11.col-md-5.col-lg-4.d-inline-block.p-0.ml-4
               a(href=`/events/${event.id}`)
                 img(src="./covers/HybridTheoryCDcover.jpg" alt="Hybrid Theory")
-              .card-text
+              .card-text.p-1
                 a.title(href=`/events/${event.id}`)= event.title
                 include events/_event
 
@@ -73,10 +73,10 @@ block content
             .row
               -var n = 0;
               while n < 9
-                .col-lg-4
+                .col-lg-4.col-md-6.col-sm-12
                   .tour-card.text-muted
                     a(href="#")
                       img(src="./tours/tour_celebrate.jpeg" alt="Celebrate tour ticket")
-                    .tour-caption
+                    .tour-caption.py-auto
                       |Linkin Park and Friends - Celebrate Life In Honor of Chester Bennington
                 -n++;
