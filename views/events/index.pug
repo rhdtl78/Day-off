@@ -16,11 +16,22 @@ block content
     if events.total <= 0 
       .alert.alert-info No events available yet
     else
-      .events
+      .events.justify-content-center
         each event in events.docs
-          .event.col-lg-4.col-sm-10.d-lg-inline-block
-            a.title(href=`/events/${event.id}`)= event.title
-            include _event
+          .card.event.col-sm-11.col-md-5.col-lg-4.d-inline-block.p-0.ml-4
+            a(href=`/events/${event.id}`)
+              img(src="./covers/HybridTheoryCDcover.jpg" alt="Hybrid Theory")
+            .card-text.p-1
+              a.title(href=`/events/${event.id}`)= event.title
+              include _event
+
+            .card-footer.p-0
+              .icon.p-2.d-inline-block.m-0
+                a(href="#")
+                  i.fa.fa-heart
+              .icon.p-2.d-inline-block.m-0
+                a(href="#")
+                  i.fa.fa-bookmark-o
 
       +paginate(events, '/events', query)
 

@@ -1,6 +1,6 @@
 const express = require('express');
 const Event = require('../../models/event');
-const Answer = require('../../models/answer');
+const Comment = require('../../models/comment');
 const ParticipateLog = require('../../models/participate-log');
 const catchErrors = require('../../lib/async-error');
 
@@ -40,12 +40,12 @@ router.post('/events/:id/participate', catchErrors(async (req, res, next) => {
   return res.json(event);
 }));
 
-// Like for Answer
-router.post('/answers/:id/participate', catchErrors(async (req, res, next) => {
-  const answer = await Answer.findById(req.params.id);
-  answer.numParticipant++;
-  await answer.save();
-  return res.json(answer);
+// Like for Comment
+router.post('/comments/:id/participate', catchErrors(async (req, res, next) => {
+  const comment = await Comment.findById(req.params.id);
+  comment.numParticipant++;
+  await comment.save();
+  return res.json(comment);
 }));
 
 router.use((err, req, res, next) => {

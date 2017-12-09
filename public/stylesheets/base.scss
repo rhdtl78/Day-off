@@ -138,37 +138,38 @@ h3{
   display: block;
   width: 100%;
   background-color: #030202;
+  a{
+    display: block;
+    height: auto;
+    width: 100%;
+    position: relative;
+  }
+  img{
+    width: 100%
+  }
+  .covers{
+    width: 20%;
+    height: 20%;
+  }
+  .card-text{
+    font-size: 1em;
+    color: #ffffff;
+  }
+  .card-footer{
+    border-top: 1px solid gray;
+    a{
+      display: inline;
+      width: 5%;
+    }
+    .icon{
+      border:solid white 1px;
+    }
+  }
+  .fa{
+    color: white;
+  }
 }
 
-.card a{
-  display: block;
-  height: auto;
-  width: 100%;
-  position: relative;
-}
-
-.card img{
-  width: 100%
-}
-
-.card.covers{
-  width: 20%;
-  height: 20%;
-}
-
-.card-text{
-  font-size: 1em;
-  color: #ffffff;
-}
-
-.card-footer{
-  border-top: 1px solid gray;
-}
-
-.card-footer a{
-  display: inline;
-  width: 5%;
-}
 
 .Emblem{
   background-color: #ffffff;
@@ -190,10 +191,32 @@ h3{
   position: relative;
   width: 100%;
   padding: 0px;
-}
+  img{
+    width: 100%;
+  }
+  .tour-caption{
+    position:absolute;
+    bottom: 0px;
+    opacity:0;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 1%;
+    background: #000000;
+    color:#ffffff;
+    font-size: 2rem;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    transition: .5s;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    :hover{
+      opacity: 0.8;
+    }
+  }
 
-.tour-card img{
-  width: 100%;
 }
 
 .img-mob{
@@ -204,29 +227,7 @@ h3{
   display: none;
 }
 
-.tour-caption{
-  position:absolute;
-  bottom: 0px;
-  opacity:0;
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-  padding: 1%;
-  background: #000000;
-  color:#ffffff;
-  font-size: 2rem;
-  text-align: center;
-  display: table-cell;
-  vertical-align: middle;
-  transition: .5s;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
 
-.tour-card:hover > .tour-caption{
-  opacity: 0.8;
-}
 .empty {
   margin-bottom: 8%;
 }
@@ -242,11 +243,11 @@ form label {
   height: 60px;
   line-height: 60px;
   background-color: #f5f5f5;
+  a{
+    color: black;
+  }
 }
 
-.footer a{
-  color: black;
-}
 @media (min-device-width: 992px){
 
   .brand-img{
@@ -292,23 +293,6 @@ form label {
   #Albums_View{
     margin-bottom: 5%;
   }
-
-  .tour-card{
-    color: #ffffff;
-    margin-right: 3%;
-    margin-bottom: 3%;
-    position: relative;
-    width: 100%;
-    padding: 0px;
-    height: auto;
-    float: left;
-  }
-
-
-  .tour-card img{
-    width: 100%;
-  }
-
   .img-mob{
     display: none;
   }
@@ -319,10 +303,6 @@ form label {
 
   .empty {
     margin-bottom: 8%;
-  }
-
-  .tours::after{
-    clear: both;
   }
 
 }

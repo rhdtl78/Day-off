@@ -9,7 +9,7 @@ $(function() {
       dataType: 'json',
       success: function(data) {
         $('.event .num-participate').text(data.numParticipant);
-        $('.event-participate-btn').hide();
+        window.location.reload();
       },
       error: function(data, status) {
         if (data.status == 401) {

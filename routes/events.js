@@ -1,6 +1,7 @@
 const express = require('express');
 const Event = require('../models/event');
-const Answer = require('../models/answer');
+const Comment = require('../models/comment');
+const ReadLog = require('../models/read-log');
 const User = require('../models/user');
 const catchErrors = require('../lib/async-error');
 const needAuth = require('../lib/needAuthentication.js');
@@ -22,11 +23,29 @@ module.exports = io => {
 
   router.get('/:id',needAuth, catchErrors(async (req, res, next) => {
     const event = await Event.findById(req.params.id).populate('author');
-    const answers = await Answer.find({event: event.id}).populate('author');
-    event.numReads++;    // TODO: 동일한 사람이 본 경우에 Read가 증가하지 않도록???
+    const comments = await Comment.find({event: event.id}).populate('author');
+
+    var readLog = await ReadLog.findOne({author: req.user._id, event: event._id});
+    console.log(readLog);
+    var new_readLog;
+    if (!readLog) {
+
+      await ReadLog.create({author: req.user._id, event: event._id});
+      new_readLog = await ReadLog.findOne({author: req.user._id, event: event._id});
+      console.log(new_readLog.author);
+      event.readLog.push(new_readLog._id);
+      await event.save();
+    }else{
+      console.log(readLog.author);
+      console.log('no read log')
+    }
+    event.numReads = event.readLog.length,
+    console.log(req.user.id);
+
     var logs = event.participateLog;
     var length = event.numParticipant;
     var participants = [];
+    var isParticipated = false;
     var i = 0;
     for(i = 0 ; i < length; i++){
       var log = await ParticipateLog.findById(logs[i]);
@@ -34,20 +53,16 @@ module.exports = io => {
         console.log(log);
         var p = await User.findById(log.author);
         if(p){
-          console.log(p);
           participants[i] = {name:p.name,email:p.email,participatedAt:log.createdAt};
+          if(p.id == req.user.id){
+            isParticipated = true;
+          }
         }
       }
     }
-    var isParticipated = false;
-    var u = participants.filter(function (p) {
-      req.user._id == p._id
-    });
-    if(u){
-      isParticipated = true;
-    }
+    console.log(req.user.name,' was participants? ',isParticipated);
     await event.save();
-    res.render('events/show', {event: event, answers: answers, isParticipated: isParticipated});
+    res.render('events/show', {event: event, comments: comments, isParticipated: isParticipated});
   }));
 
   router.get('/:id/participants',needAuth, catchErrors(async (req,res,next)=>{
@@ -121,7 +136,7 @@ module.exports = io => {
     res.redirect('/events');
   }));
 
-  router.post('/:id/answers', needAuth, catchErrors(async (req, res, next) => {
+  router.post('/:id/comments', needAuth, catchErrors(async (req, res, next) => {
     const user = req.user;
     const event = await Event.findById(req.params.id);
 
@@ -130,20 +145,20 @@ module.exports = io => {
       return res.redirect('back');
     }
 
-    var answer = new Answer({
+    var comment = new Comment({
       author: user._id,
       event: event._id,
       content: req.body.content
     });
-    await answer.save();
-    event.numAnswers++;
+    await comment.save();
+    event.numComments++;
     await event.save();
 
-    const url = `/events/${event._id}#${answer._id}`;
+    const url = `/events/${event._id}#${comment._id}`;
     io.to(event.author.toString())
-      .emit('answered', {url: url, event: event});
-    console.log('SOCKET EMIT', event.author.toString(), 'answered', {url: url, event: event})
-    req.flash('success', 'Successfully answered');
+      .emit('commented', {url: url, event: event});
+    console.log('SOCKET EMIT', event.author.toString(), 'commented', {url: url, event: event})
+    req.flash('success', 'Successfully commented');
     res.redirect(`/events/${req.params.id}`);
   }));
 
