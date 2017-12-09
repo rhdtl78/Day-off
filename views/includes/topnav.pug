@@ -13,7 +13,7 @@ div.container-fluid.p-0
             if currentUser.admin == true
               a.nav-link(href="/users")=currentUser.name
             else 
-              a.nav-link(href=`/users/${currentUser._id}/edit`)=currentUser.name
+              a.nav-link(href=`/users/${currentUser._id}`)=currentUser.name
               
         li
           a(class="nav-link" href="/events") BROWSE EVENTS

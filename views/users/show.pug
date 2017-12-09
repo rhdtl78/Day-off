@@ -23,9 +23,11 @@ block content
       if currentUser.admin == true
         a.btn.btn-outline-secondary(href='/users/') List
         | 
+      if !user.facebook.id
         a.btn.btn-outline-primary(href=`/users/${user.id}/edit`) Edit
         | 
+      if currentUser.admin || currentUser.id == user.id
         a.btn.btn-outline-danger.need-confirm-btn(href=`/users/${user.id}?_method=DELETE`) Delete
-      else 
-        a.btn.btn-outline-secondary(href=`/events/byuser/${user.id}`) See Events
+       
+      a.btn.btn-outline-secondary(href=`/events/byuser/${user.id}`) See Events
         
