@@ -55,7 +55,7 @@ module.exports = (app, io) => {
 
   // _method를 통해서 method를 변경할 수 있도록 함. PUT이나 DELETE를 사용할 수 있도록.
   app.use(methodOverride('_method', {
-    methods: ['POST', 'GET']
+    methods: ['POST', 'GET', 'PUT', 'DELETE']
   }));
 
   // sass, scss를 사용할 수 있도록

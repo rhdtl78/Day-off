@@ -61,9 +61,8 @@ block content
 
     if currentUser
       form(action=`/events/${event.id}/comments`, method='POST')
-        .form-group
-          label(for='comment') Your Comment
-          textarea.form-control(name="content", rows="5")
+        include _comment_form
         button.btn.btn-primary(type="submit") Post Your Comment
+        
 
   script(src='/javascripts/event_client.js')

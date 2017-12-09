@@ -307,8 +307,6 @@ form label {
 
 .show .comment {
   border: 0;
-  border-top: solid white 1px;
-  border-bottom: solid white 1px;
   position: relative;
   margin-bottom: 1em; }
   .show .comment .like-badge {
@@ -319,7 +317,9 @@ form label {
       font-size: 0.8em; }
   .show .comment .card-body {
     padding-left: 4em;
-    background-color: #252525; }
+    background-color: #252525;
+    border-top: solid white 1px;
+    border-bottom: solid white 1px; }
   .show .comment .content {
     margin-bottom: 0.5em;
     color: #888; }

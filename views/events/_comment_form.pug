@@ -1,0 +1,6 @@
+.form-group
+  label(for='comment') Your Comment
+  if comment
+    textarea.form-control(name="content", rows="5")= comment.content
+  else 
+    textarea.form-control(name="content", rows="5")    

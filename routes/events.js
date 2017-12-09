@@ -85,6 +85,26 @@ module.exports = io => {
     res.render('events/participants',{participants:participants, post:event});
   }));
 
+  router.get('/comment/:id/edit',needAuth, catchErrors(async (req, res, next) => {
+    const comment = await Comment.findById(req.params.id);
+    res.render('events/comment_edit', {comment: comment});
+  }));
+
+  router.post('/comment/:id',needAuth, catchErrors(async (req, res, next) => {
+    const comment = await Comment.findById(req.params.id);
+    const event = await Event.findById(comment.event);
+
+    if (!comment) {
+      req.flash('danger', 'Not exist comment');
+      return res.redirect('back');
+    }
+    comment.content = req.body.content
+
+    await comment.save();
+    req.flash('success', 'Successfully updated');
+    res.redirect(`/events/${event.id}`);
+  }));
+
   router.post('/:id',needAuth, catchErrors(async (req, res, next) => {
     const event = await Event.findById(req.params.id);
 
@@ -114,6 +134,17 @@ module.exports = io => {
     await Event.findOneAndRemove({_id: req.params.id});
     req.flash('success', 'Successfully deleted');
     res.redirect('/events');
+  }));
+
+  router.delete('/comment/:id', needAuth, catchErrors(async (req, res, next) => {
+    const comment = await Comment.findById(req.params.id);
+    console.log(comment);
+    var event = await Event.findById(comment.event);
+    event.numComments--;
+    await Comment.findOneAndRemove({_id: req.params.id});
+    await event.save();
+    req.flash('success', 'Successfully deleted');
+    res.redirect(`/events/${event.id}`);
   }));
 
   router.post('/', needAuth, catchErrors(async (req, res, next) => {

@@ -1,5 +1,5 @@
 .comment.card(id= comment.id)
-  .numbers.like-badge
+  .numbers.like-badge.d-inline
     .number
       span.number.num-likes= comment.numLikes
     .button
@@ -8,11 +8,16 @@
         | 
         | Like
 
-  .card-body
-    .content.d-inline-block= comment.content
-    .col-sm.text-right.d-inline-block
+  .card-body.d-inline
+    .content.col-5.d-inline-block= comment.content
+    .col-3.text-right.d-inline-block.pl-4
       .author
         | commented on #{moment(comment.createdAt).format('YYYY-MM-DD')}
         if comment.author
           | 
           | by #[a(href=`/users/${comment.author.id}`)= comment.author.name]
+    .col-3.px-auto.py-0.buttons.d-inline-block
+        if comment.author.id == currentUser.id
+          a.btn.btn-outline-secondary.d-inline(href=`/events/comment/${comment._id}/edit`) Edit
+          | 
+          a.btn.btn-outline-danger.need-confirm-btn.d-inline(href=`/events/comment/${comment._id}?_method=delete`) Delete
