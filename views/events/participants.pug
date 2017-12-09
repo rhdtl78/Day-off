@@ -9,12 +9,12 @@ block content
         tr
           th Name
           th Email
-          th Created At
+          th Participated At
           th
       tbody #{participants.length}
         each participant in participants
           tr
             td
-              a(href=`/users/${participant._id}`)= participant.name
+              a(href=`/users/${participant.id}`)= participant.name
             td= participant.email
             td= moment(participant.participatedAt).format('YYYY-MM-DD HH:mm:ss')

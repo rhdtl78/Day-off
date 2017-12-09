@@ -53,7 +53,7 @@ module.exports = io => {
         console.log(log);
         var p = await User.findById(log.author);
         if(p){
-          participants[i] = {name:p.name,email:p.email,participatedAt:log.createdAt};
+          participants[i] = {_id:p.id,name:p.name,email:p.email,participatedAt:log.createdAt};
           if(p.id == req.user.id){
             isParticipated = true;
           }
@@ -78,7 +78,7 @@ module.exports = io => {
         var p = await User.findById(log.author);
         if(p){
           console.log(p);
-          participants[i] = {name:p.name,email:p.email,participatedAt:log.createdAt};
+          participants[i] = {id:p.id,name:p.name,email:p.email,participatedAt:log.createdAt};
         }
       }
     }
@@ -88,6 +88,15 @@ module.exports = io => {
   router.get('/comment/:id/edit',needAuth, catchErrors(async (req, res, next) => {
     const comment = await Comment.findById(req.params.id);
     res.render('events/comment_edit', {comment: comment});
+  }));
+
+
+  router.get('/byuser/:id', needAuth, catchErrors(async (req, res, next) => {
+    const events = await Event.find({author:req.params.id}).populate('author');
+    console.log(req.params._id);
+    if(events) console.log(events);
+
+    res.render('events/index', {events:events, author:req.params.id});
   }));
 
   router.post('/comment/:id',needAuth, catchErrors(async (req, res, next) => {

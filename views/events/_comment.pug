@@ -1,23 +1,14 @@
 .comment.card(id= comment.id)
-  .numbers.like-badge.d-inline
-    .number
-      span.number.num-likes= comment.numLikes
-    .button
-      a.like.comment-like-btn(href='#', data-id=comment.id)
-        i.fa.fa-thumbs-up
+  .content.col-xs-12.col-sm-12.col-md-5.col-lg-5.d-inline-block
+    span= comment.content
+  .col-sm-3.col-md-4.text-right.d-inline-block.p-0
+    .author
+      | commented on #{moment(comment.createdAt).format('YYYY-MM-DD')}
+      if comment.author
         | 
-        | Like
-
-  .card-body.d-inline
-    .content.col-5.d-inline-block= comment.content
-    .col-3.text-right.d-inline-block.pl-4
-      .author
-        | commented on #{moment(comment.createdAt).format('YYYY-MM-DD')}
-        if comment.author
-          | 
-          | by #[a(href=`/users/${comment.author.id}`)= comment.author.name]
-    .col-3.px-auto.py-0.buttons.d-inline-block
-        if comment.author.id == currentUser.id
-          a.btn.btn-outline-secondary.d-inline(href=`/events/comment/${comment._id}/edit`) Edit
-          | 
-          a.btn.btn-outline-danger.need-confirm-btn.d-inline(href=`/events/comment/${comment._id}?_method=delete`) Delete
+        | by #[a(href=`/users/${comment.author.id}`)= comment.author.name]
+  .col-sm-4.col-md-2.d-inline-block.py-auto.px-0.text-right
+      if comment.author.id == currentUser.id
+        a.btn.btn-sm.btn-md.btn-lg.btn-outline-secondary.d-inline(href=`/events/comment/${comment._id}/edit`) Edit
+        | 
+        a.btn.btn-sm.btn-md.btn-lg.btn-outline-danger.need-confirm-btn.d-inline(href=`/events/comment/${comment._id}?_method=delete`) Delete

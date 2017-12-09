@@ -133,7 +133,8 @@ h3 {
       display: inline;
       width: 5%; }
     .card .card-footer .icon {
-      border: solid white 1px; }
+      border: 0;
+      border-right: solid gray 1px; }
   .card .fa {
     color: white; }
 
@@ -174,8 +175,9 @@ h3 {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden; }
-    .tour-card .tour-caption :hover {
-      opacity: 0.8; }
+
+.tour-card:hover > .tour-caption {
+  opacity: 0.8; }
 
 .img-mob {
   display: block; }
@@ -316,7 +318,6 @@ form label {
     .show .comment .like-badge .button {
       font-size: 0.8em; }
   .show .comment .card-body {
-    padding-left: 4em;
     background-color: #252525;
     border-top: solid white 1px;
     border-bottom: solid white 1px; }
@@ -338,8 +339,5 @@ form label {
   .event-participate-btn.disabled, .comment-like-btn.disabled {
     color: #bbb;
     cursor: default; }
-
-.col-lg-4 {
-  width: 30%; }
 
 /*# sourceMappingURL=style.css.map */

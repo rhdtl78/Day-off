@@ -12,7 +12,7 @@ block content
               | 분류 : #{event.category}
           .fee
             span 
-            if event.fee == 0
+            if !event.fee
               | 참가비 : 무료
             else
               | 참가비 : #{event.fee}$

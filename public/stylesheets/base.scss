@@ -163,7 +163,8 @@ h3{
       width: 5%;
     }
     .icon{
-      border:solid white 1px;
+      border: 0;
+      border-right :solid gray 1px;
     }
   }
   .fa{
@@ -213,11 +214,12 @@ h3{
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    :hover{
-      opacity: 0.8;
-    }
   }
 
+}
+
+.tour-card:hover > .tour-caption{
+  opacity: 0.8;
 }
 
 .img-mob{

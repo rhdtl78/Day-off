@@ -23,9 +23,9 @@ block content
       if currentUser.admin == true
         a.btn.btn-outline-secondary(href='/users/') List
         | 
-        a.btn.btn-outline-primary(href=`/users/${user._id}/edit`) Edit
+        a.btn.btn-outline-primary(href=`/users/${user.id}/edit`) Edit
         | 
-        a.btn.btn-outline-danger.need-confirm-btn(href=`/users/${user._id}?_method=DELETE`) Delete
+        a.btn.btn-outline-danger.need-confirm-btn(href=`/users/${user.id}?_method=DELETE`) Delete
       else 
-        a.btn.btn-outline-secondary(href='/users/') See Events
+        a.btn.btn-outline-secondary(href=`/events/byuser/${user.id}`) See Events
         
