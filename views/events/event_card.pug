@@ -1,0 +1,12 @@
+.event.card.col-lg-4.col-md-6.col-11.d-inline-block.p-0.ml-1
+  .card-text.p-1
+    a.title(href=`/events/${event.id}`)= event.title
+    include _event
+
+  .card-footer.p-0
+    .icon.p-2.d-inline-block.m-0
+      button.event-participate-btn(data-id=event.id style="background-color:rgba(0,0,0,0.0); border: transparent")
+        i.fa.fa-heart
+    .icon.p-2.d-inline-block.m-0
+      a(href="#")
+        i.fa.fa-bookmark-o

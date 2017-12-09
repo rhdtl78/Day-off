@@ -49,20 +49,7 @@ block content
       else
         .events.justify-content-center
           each event in events.docs
-            .card.event.col-sm-11.col-md-5.col-lg-4.d-inline-block.p-0.ml-4
-              //- a(href=`/events/${event.id}`)
-              //-   img(src="./covers/HybridTheoryCDcover.jpg" alt="Hybrid Theory")
-              .card-text.p-1
-                a.title(href=`/events/${event.id}`)= event.title
-                include events/_event
-
-              .card-footer.p-0
-                .icon.p-2.d-inline-block.m-0
-                  button.event-participate-btn(data-id=event.id style="background-color:rgba(0,0,0,0.0); border: transparent")
-                    i.fa.fa-heart
-                .icon.p-2.d-inline-block.m-0
-                  a(href="#")
-                    i.fa.fa-bookmark-o
+            include events/event_card
             
               
   

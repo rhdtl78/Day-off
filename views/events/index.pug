@@ -19,37 +19,12 @@ block content
       .events.justify-content-center
         if author
           each event in events
-            .card.event.col-sm-11.col-md-5.col-lg-4.d-inline-block.p-0.ml-4
-              //- a(href=`/events/${event.id}`)
-              //-   img(src="./covers/HybridTheoryCDcover.jpg" alt="Hybrid Theory")
-              .card-text.p-1
-                a.title(href=`/events/${event.id}`)= event.title
-                include _event
-
-              .card-footer.p-0
-                .icon.p-2.d-inline-block.m-0
-                  a(href=`/events/${event.id}/participate`)
-                    i.fa.fa-heart
-                .icon.p-2.d-inline-block.m-0
-                  a(href="#")
-                    i.fa.fa-bookmark-o
+            include event_card
 
         else  
           each event in events.docs
-            .card.event.col-sm-11.col-md-5.col-lg-4.d-inline-block.p-0.ml-4
-              //- a(href=`/events/${event.id}`)
-              //-   img(src="./covers/HybridTheoryCDcover.jpg" alt="Hybrid Theory")
-              .card-text.p-1
-                a.title(href=`/events/${event.id}`)= event.title
-                include _event
+            include event_card
 
-              .card-footer.p-0
-                .icon.p-2.d-inline-block.m-0
-                  a(href=`/events/${event.id}/participate`)
-                    i.fa.fa-heart
-                .icon.p-2.d-inline-block.m-0
-                  a(href="#")
-                    i.fa.fa-bookmark-o
 
         +paginate(events, '/events', query)
 

@@ -301,6 +301,9 @@ form label {
   overflow: hidden;
   text-overflow: ellipsis; }
 
+.events .col-lg-4 {
+  width: 32%; }
+
 .show .content {
   white-space: pre-wrap; }
 
